@@ -1,7 +1,5 @@
-import { Button } from "@patternfly/react-core";
-import { Stack, StackItem } from "@patternfly/react-core";
-import "@patternfly/react-core/src/layouts/Stack/examples/./stack.css";
 import React from "react";
+import { Button, Stack, StackItem } from "@patternfly/react-core";
 
 const App = () => {
   return (
