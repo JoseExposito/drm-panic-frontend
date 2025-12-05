@@ -51,6 +51,31 @@ export default () => ({
         ],
       },
       {
+        // PatterFly fonts:
+        // https://github.com/patternfly/patternfly-react-seed/blob/main/webpack.common.js
+        test: /\.(svg|ttf|eot|woff|woff2)$/,
+        type: "asset/resource",
+        include: [
+          path.resolve(__dirname, "node_modules/patternfly/dist/fonts"),
+          path.resolve(
+            __dirname,
+            "node_modules/@patternfly/react-core/dist/styles/assets/fonts",
+          ),
+          path.resolve(
+            __dirname,
+            "node_modules/@patternfly/react-core/dist/styles/assets/pficon",
+          ),
+          path.resolve(
+            __dirname,
+            "node_modules/@patternfly/patternfly/assets/fonts",
+          ),
+          path.resolve(
+            __dirname,
+            "node_modules/@patternfly/patternfly/assets/pficon",
+          ),
+        ],
+      },
+      {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
         type: "asset",
       },
