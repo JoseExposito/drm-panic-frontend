@@ -3,9 +3,13 @@
     "<BUILTIN_MODULES>",
     "^react$",
     "<THIRD_PARTY_MODULES>",
-    "^[./]",
+    ".js$",
+    ".jsx$",
     "<SEPARATOR>",
-    ".css$"
+    ".css$",
+    "<SEPARATOR>",
+    ".png$",
+    ".svg$"
   ],
   "importOrderSortSpecifiers": true,
   "importOrderSeparation": true,

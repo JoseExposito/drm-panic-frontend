@@ -1,18 +1,37 @@
 import React, { useMemo } from "react";
-import { Stack, StackItem } from "@patternfly/react-core";
+import {
+  Masthead,
+  MastheadBrand,
+  MastheadContent,
+  MastheadLogo,
+  MastheadMain,
+  Page,
+  PageSection,
+} from "@patternfly/react-core";
+import parseUrl from "./url-parser.js";
 import ErrorView from "./error-view.jsx";
 import InfoView from "./info-view.jsx";
-import parseUrl from "./url-parser.js";
+import Logo from "./logo.jsx";
 
 const App = () => {
   const params = useMemo(() => parseUrl(), []);
 
+  const masthead = (
+    <Masthead display={{ default: "inline" }}>
+      <MastheadMain>
+        <MastheadBrand>
+          <MastheadLogo>
+            <Logo />
+          </MastheadLogo>
+        </MastheadBrand>
+      </MastheadMain>
+      <MastheadContent />
+    </Masthead>
+  );
+
   return (
-    <Stack>
-      <StackItem>
-        <h1>Hello world</h1>
-      </StackItem>
-      <StackItem isFilled>
+    <Page masthead={masthead}>
+      <PageSection isFilled>
         {params ? (
           <InfoView
             architecture={params.architecture}
@@ -22,9 +41,9 @@ const App = () => {
         ) : (
           <ErrorView />
         )}
-      </StackItem>
-      <StackItem>Footer</StackItem>
-    </Stack>
+      </PageSection>
+      <PageSection variant="secondary">Footer??</PageSection>
+    </Page>
   );
 };
 
