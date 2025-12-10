@@ -16,7 +16,10 @@ const InfoPage = ({ architecture, version, trace }) => {
   };
 
   return (
-    <Stack hasGutter className={css(flex.alignItemsCenter)}>
+    <Stack
+      hasGutter
+      className={css(flex.alignItemsCenter, flex.justifyContentCenter)}
+    >
       <StackItem>
         <Tux />
       </StackItem>

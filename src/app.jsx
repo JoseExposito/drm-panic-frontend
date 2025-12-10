@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import {
+  Brand,
   Masthead,
   MastheadBrand,
   MastheadContent,
@@ -10,20 +11,21 @@ import {
 } from "@patternfly/react-core";
 import parseUrl from "./url-parser.js";
 import useSystemColorScheme from "./hooks/use-system-color-scheme.jsx";
-import Logo from "./logo.jsx";
 import ErrorPage from "./pages/error/error-page.jsx";
 import InfoPage from "./pages/info/info-page.jsx";
+
+import fedoraLogo from "../public/fedora-logo-white.png";
 
 const App = () => {
   const params = useMemo(() => parseUrl(), []);
   useSystemColorScheme();
 
   const masthead = (
-    <Masthead display={{ default: "inline" }}>
+    <Masthead display={{ default: "inline" }} className="fedora-header">
       <MastheadMain>
         <MastheadBrand>
           <MastheadLogo>
-            <Logo />
+            <Brand src={fedoraLogo} alt="" />
           </MastheadLogo>
         </MastheadBrand>
       </MastheadMain>
@@ -32,7 +34,7 @@ const App = () => {
   );
 
   return (
-    <Page masthead={masthead}>
+    <Page masthead={masthead} className="page">
       <PageSection className="page-container">
         {params ? (
           <InfoPage
