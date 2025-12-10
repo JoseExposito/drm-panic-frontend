@@ -111,6 +111,6 @@ export default () => ({
         isProduction ? "production" : "development",
       ),
     }),
-    isProduction && new MiniCssExtractPlugin(),
+    isProduction && new MiniCssExtractPlugin({ filename: "[name].[hash].css" }),
   ].filter(Boolean),
 });
