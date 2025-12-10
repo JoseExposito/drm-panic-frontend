@@ -70,6 +70,9 @@ const parseUrl = () => {
   const encodedData = params.get(UrlParams.ENCODED_DATA);
 
   const trace = parseTrace(encodedData);
+  if (!trace) {
+    return null;
+  }
 
   return { architecture, version, trace };
 };
