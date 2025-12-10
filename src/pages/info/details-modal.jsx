@@ -45,14 +45,8 @@ const DetailsModal = ({ isOpen, onClose, architecture, version, trace }) => {
           </StackItem>
           <StackItem isFilled>
             <textarea
+              className="trace-modal-textarea"
               readOnly={true}
-              style={{
-                minWidth: "100%",
-                maxWidth: "100%",
-                padding: "4px",
-                fontFamily: "monospace",
-                height: "30vh",
-              }}
               value={trace}
             />
           </StackItem>

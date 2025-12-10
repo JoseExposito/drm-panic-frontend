@@ -23,10 +23,7 @@ const Tux = ({ isError }) => {
   const text = isError ? error : ok;
 
   return (
-    <pre
-      aria-hidden
-      style={{ direction: "ltr", fontWeight: "bold", fontSize: "1.3em" }}
-    >
+    <pre className="ascii-tux" aria-hidden>
       {text}
     </pre>
   );

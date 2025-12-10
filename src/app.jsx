@@ -33,7 +33,7 @@ const App = () => {
 
   return (
     <Page masthead={masthead}>
-      <PageSection isFilled>
+      <PageSection className="page-container">
         {params ? (
           <InfoPage
             architecture={params.architecture}
@@ -44,7 +44,6 @@ const App = () => {
           <ErrorPage />
         )}
       </PageSection>
-      <PageSection variant="secondary">Footer??</PageSection>
     </Page>
   );
 };
