@@ -5,8 +5,8 @@ import { css } from "@patternfly/react-styles";
 import alignment from "@patternfly/react-styles/css/utilities/Alignment/alignment";
 import flex from "@patternfly/react-styles/css/utilities/Flex/flex";
 import PropTypes from "prop-types";
+import Tux from "../../components/tux.jsx";
 import DetailsModal from "./details-modal.jsx";
-import Tux from "./tux.jsx";
 
 const InfoPage = ({ architecture, version, trace }) => {
   const [isOpen, setIsOpen] = useState(false);
