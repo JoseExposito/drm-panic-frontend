@@ -6,7 +6,7 @@ import flex from "@patternfly/react-styles/css/utilities/Flex/flex";
 import PropTypes from "prop-types";
 import Tux from "./tux.jsx";
 
-const InfoView = ({ architecture, version, trace }) => {
+const InfoPage = ({ architecture, version, trace }) => {
   return (
     <Stack hasGutter className={css(flex.alignItemsCenter)}>
       <StackItem>
@@ -38,10 +38,10 @@ const InfoView = ({ architecture, version, trace }) => {
   );
 };
 
-InfoView.propTypes = {
+InfoPage.propTypes = {
   architecture: PropTypes.string.isRequired,
   version: PropTypes.string.isRequired,
   trace: PropTypes.string.isRequired,
 };
 
-export default InfoView;
+export default InfoPage;

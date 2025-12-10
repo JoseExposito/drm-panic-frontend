@@ -9,10 +9,10 @@ import {
   PageSection,
 } from "@patternfly/react-core";
 import parseUrl from "./url-parser.js";
-import ErrorView from "./error-view.jsx";
 import useSystemColorScheme from "./hooks/use-system-color-scheme.jsx";
-import InfoView from "./info-view.jsx";
 import Logo from "./logo.jsx";
+import ErrorPage from "./pages/error/error-page.jsx";
+import InfoPage from "./pages/info/info-page.jsx";
 
 const App = () => {
   const params = useMemo(() => parseUrl(), []);
@@ -35,13 +35,13 @@ const App = () => {
     <Page masthead={masthead}>
       <PageSection isFilled>
         {params ? (
-          <InfoView
+          <InfoPage
             architecture={params.architecture}
             version={params.version}
             trace={params.trace}
           />
         ) : (
-          <ErrorView />
+          <ErrorPage />
         )}
       </PageSection>
       <PageSection variant="secondary">Footer??</PageSection>
