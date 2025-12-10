@@ -17,6 +17,7 @@ export default () => ({
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
+    clean: true,
   },
   devServer: {
     open: false,
@@ -48,6 +49,14 @@ export default () => ({
         use: [
           isProduction ? MiniCssExtractPlugin.loader : "style-loader",
           "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: ["autoprefixer"],
+              },
+            },
+          },
         ],
       },
       {
@@ -57,7 +66,6 @@ export default () => ({
           {
             loader: "url-loader",
             options: {
-              // limit: false,
               limit: 8192,
             },
           },
