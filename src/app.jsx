@@ -10,11 +10,13 @@ import {
 } from "@patternfly/react-core";
 import parseUrl from "./url-parser.js";
 import ErrorView from "./error-view.jsx";
+import useSystemColorScheme from "./hooks/use-system-color-scheme.jsx";
 import InfoView from "./info-view.jsx";
 import Logo from "./logo.jsx";
 
 const App = () => {
   const params = useMemo(() => parseUrl(), []);
+  useSystemColorScheme();
 
   const masthead = (
     <Masthead display={{ default: "inline" }}>
