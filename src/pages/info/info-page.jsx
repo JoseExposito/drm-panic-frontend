@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Stack, StackItem, Title } from "@patternfly/react-core";
+import { ExternalLinkSquareAltIcon } from "@patternfly/react-icons/dist/esm/icons/external-link-square-alt-icon";
 import { css } from "@patternfly/react-styles";
 import alignment from "@patternfly/react-styles/css/utilities/Alignment/alignment";
 import flex from "@patternfly/react-styles/css/utilities/Flex/flex";
 import PropTypes from "prop-types";
+import DetailsModal from "./details-modal.jsx";
 import Tux from "./tux.jsx";
 
 const InfoPage = ({ architecture, version, trace }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleModalToggle = () => {
+    setIsOpen((prevIsModalOpen) => !prevIsModalOpen);
+  };
+
   return (
     <Stack hasGutter className={css(flex.alignItemsCenter)}>
       <StackItem>
@@ -28,12 +36,26 @@ const InfoPage = ({ architecture, version, trace }) => {
       </StackItem>
 
       <StackItem>
-        <Button variant="primary">Report Issue</Button>
+        <DetailsModal
+          isOpen={isOpen}
+          onClose={handleModalToggle}
+          architecture={architecture}
+          version={version}
+          trace={trace}
+        />
+        <Button
+          variant="link"
+          icon={<ExternalLinkSquareAltIcon />}
+          iconPosition="end"
+          onClick={handleModalToggle}
+        >
+          View more details
+        </Button>
       </StackItem>
 
-      <p>{architecture}</p>
-      <p>{version}</p>
-      <pre>{trace}</pre>
+      <StackItem>
+        <Button variant="primary">Report Issue</Button>
+      </StackItem>
     </Stack>
   );
 };
