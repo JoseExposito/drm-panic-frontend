@@ -1,10 +1,10 @@
-import js from "@eslint/js";
 import prettierConfig from "eslint-config-prettier/flat";
 import pluginImport from "eslint-plugin-import";
 import pluginJsxA11y from "eslint-plugin-jsx-a11y";
 import pluginReact from "eslint-plugin-react";
 import pluginReactHooks from "eslint-plugin-react-hooks";
 import globals from "globals";
+import js from "@eslint/js";
 
 export default [
   js.configs.recommended,

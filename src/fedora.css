@@ -16,12 +16,12 @@
 } */
 
 .page {
-  background: radial-gradient(circle at 2.5rem, #51A2DA 32px, #3C6EB4 100%);
+  background: radial-gradient(circle at 2.5rem, #51a2da 32px, #3c6eb4 100%);
 }
 
 @media (prefers-color-scheme: dark) {
   .page {
-    background: radial-gradient(circle at 2.5rem, #51A2DA 32px, #00356b 100%)
+    background: radial-gradient(circle at 2.5rem, #51a2da 32px, #00356b 100%);
   }
 }
 
