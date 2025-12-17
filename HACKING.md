@@ -118,7 +118,14 @@ Start by installing the dependencies:
 $ npm install
 ```
 
-And start the development server:
+Next, copy the .env template and update the .env file with your values:
+
+```bash
+$ cp .env.example .env
+# Open the .env file and set the correct values
+```
+
+And finally, start the development server:
 
 ```bash
 $ npm start

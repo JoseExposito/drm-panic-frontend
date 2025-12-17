@@ -13,6 +13,7 @@ const isProduction = process.env.NODE_ENV === "production";
 export default () => ({
   mode: isProduction ? "production" : "development",
   entry: "./src/index.jsx",
+  dotenv: true,
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
