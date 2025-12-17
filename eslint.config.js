@@ -17,7 +17,10 @@ export default [
       parserOptions: {
         ecmaFeatures: { jsx: true },
       },
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        process: true,
+      },
     },
     plugins: {
       react: pluginReact,

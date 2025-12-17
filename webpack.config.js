@@ -8,7 +8,6 @@ import webpack from "webpack";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// eslint-disable-next-line no-undef
 const isProduction = process.env.NODE_ENV === "production";
 
 export default () => ({
