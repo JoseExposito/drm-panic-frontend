@@ -1,6 +1,6 @@
-import { getUrlQuery } from "../src/url-parser";
+import { getUrlQuery, validParams } from "../src/url-parser";
 
-describe("getUrlQuery", () => {
+describe("getUrlQuery()", () => {
   const search = "?a=x86_64&v=6.17.8-200.fc42.x86_64+&z=12345";
   const hash = "#?a=x86_64&v=6.17.8-200.fc42.x86_64+&z=12345";
 
@@ -47,5 +47,24 @@ describe("getUrlQuery", () => {
     };
 
     expect(getUrlQuery(location)).toBe("only=in&a=test");
+  });
+});
+
+describe("validParams()", () => {
+  test("Returns true if all params are present", () => {
+    const params = new URLSearchParams(
+      "?a=x86_64&v=6.17.8-200.fc42.x86_64+&z=12345",
+    );
+    expect(validParams(params)).toBeTruthy();
+  });
+
+  test("Returns false if a param is missing", () => {
+    const params = new URLSearchParams("?v=6.17.8-200.fc42.x86_64+&z=12345");
+    expect(validParams(params)).toBeFalsy();
+  });
+
+  test("Returns false if there are no params", () => {
+    const params = new URLSearchParams("");
+    expect(validParams(params)).toBeFalsy();
   });
 });
