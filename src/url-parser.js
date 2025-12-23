@@ -6,8 +6,8 @@ const UrlParams = {
   ENCODED_DATA: "z",
 };
 
-const getUrlQuery = () => {
-  let query = window.location.search || window.location.hash;
+export const getUrlQuery = (location) => {
+  let query = location.search || location.hash;
 
   if (!query) {
     return null;
@@ -20,11 +20,11 @@ const getUrlQuery = () => {
   return query;
 };
 
-const validParams = (params) => {
+export const validParams = (params) => {
   return Object.values(UrlParams).every((key) => params.has(key));
 };
 
-const parseTrace = (encodedData) => {
+export const parseTrace = (encodedData) => {
   // 17 decimal digits are converted to 7 bytes
   const mainLen = Math.floor(encodedData.length / 17) * 7;
   // and the remaining bytes, compute the reverse of  [0, 3, 5, 8, 10, 13, 15, 17]
@@ -55,7 +55,7 @@ const parseTrace = (encodedData) => {
 };
 
 const parseUrl = () => {
-  const query = getUrlQuery();
+  const query = getUrlQuery(window.location);
   if (!query) {
     return null;
   }
