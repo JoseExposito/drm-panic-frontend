@@ -3,7 +3,7 @@
  * @param {string} str String to check.
  * @returns If "str" is a number or not.
  */
-const isNumeric = (str) => /^\d+$/.test(str);
+export const isNumeric = (str) => /^\d+$/.test(str);
 
 /**
  * Given a kernel version like "6.17.8-200.fc42.x86_64" returns the Fedora
@@ -13,7 +13,7 @@ const isNumeric = (str) => /^\d+$/.test(str);
  * @param {string} version Version to parse.
  * @returns {string} The Fedora version as string.
  */
-const getFedoraVersion = (version) => {
+export const getFedoraVersion = (version) => {
   const fcIndex = version.indexOf("fc");
   if (fcIndex === -1) {
     return "rawhide";
