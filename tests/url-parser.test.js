@@ -1,4 +1,4 @@
-import { getUrlQuery, validParams } from "../src/url-parser";
+import { getUrlQuery, parseTrace, validParams } from "../src/url-parser";
 
 describe("getUrlQuery()", () => {
   const search = "?a=x86_64&v=6.17.8-200.fc42.x86_64+&z=12345";
@@ -66,5 +66,14 @@ describe("validParams()", () => {
   test("Returns false if there are no params", () => {
     const params = new URLSearchParams("");
     expect(validParams(params)).toBeFalsy();
+  });
+});
+
+describe("parseTrace()", () => {
+  test("Decodes data", () => {
+    const trace = parseTrace(
+      "22850245147461960127479103797202645679929458617911856021402989363788",
+    );
+    expect(trace).toBe("Test compressed zlib");
   });
 });
