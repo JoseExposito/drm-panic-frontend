@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useState } from "react";
 import {
   Brand,
   Masthead,
@@ -11,14 +11,17 @@ import {
 } from "@patternfly/react-core";
 import parseUrl from "./url-parser.js";
 import useSystemColorScheme from "./hooks/use-system-color-scheme.jsx";
+import useUrlChange from "./hooks/use-url-change.jsx";
 import ErrorPage from "./pages/error/error-page.jsx";
 import InfoPage from "./pages/info/info-page.jsx";
 
 import fedoraLogo from "../public/fedora-logo-white.png";
 
 const App = () => {
-  const params = useMemo(() => parseUrl(), []);
+  const [params, setParams] = useState(parseUrl());
   useSystemColorScheme();
+
+  useUrlChange(() => setParams(parseUrl()));
 
   const masthead = (
     <Masthead display={{ default: "inline" }} className="fedora-header">
