@@ -109,7 +109,6 @@ http://127.0.0.1:8080/userprefs.cgi?tab=apikey
 Check the "Generate a new API key with optional description" checkbox and click
 "Submit Changes".
 
-
 ## Running the DRM Panic Frontend
 
 Start by installing the dependencies:
