@@ -21,7 +21,7 @@ const ErrorPage = () => {
 
       <StackItem className={css(alignment.textAlignCenter)}>
         <p>
-          Sorry, we could not find the details of your error, did you arrived to
+          Sorry, we could not find the details of your error, did you arrive at
           this page after scanning a QR code?
         </p>
         <p>Please scan the QR code again.</p>
