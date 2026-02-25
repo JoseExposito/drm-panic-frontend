@@ -1,73 +1,43 @@
 import React, { useState } from "react";
-import { Alert, Button, Stack, StackItem, Title } from "@patternfly/react-core";
+import { Button, Stack, StackItem, Title } from "@patternfly/react-core";
 import { ExternalLinkSquareAltIcon } from "@patternfly/react-icons/dist/esm/icons/external-link-square-alt-icon";
 import { css } from "@patternfly/react-styles";
 import alignment from "@patternfly/react-styles/css/utilities/Alignment/alignment";
 import flex from "@patternfly/react-styles/css/utilities/Flex/flex";
 import PropTypes from "prop-types";
-import reportBug from "../../bugzilla.js";
 import Tux from "../../components/tux.jsx";
 import DetailsModal from "./details-modal.jsx";
+import ReportIssueModal from "./report-issue-modal.jsx";
 
 const InfoPage = ({ architecture, version, trace }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isReportingBug, setIsReportingBug] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertDetails, setAlertDetails] = useState({ error: false, url: "" });
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isReportIssueOpen, setIsReportIssueOpen] = useState(false);
 
-  const handleModalToggle = () => {
-    setIsOpen((prevIsModalOpen) => !prevIsModalOpen);
+  const handleDetailsModalToggle = () => {
+    setIsDetailsOpen((prevIsOpen) => !prevIsOpen);
   };
 
-  const handleReportBug = async () => {
-    setIsReportingBug(true);
-    setShowAlert(false);
-
-    const url = await reportBug(architecture, version, trace);
-    if (!url) {
-      setIsReportingBug(false);
-      setAlertDetails({ error: true, url: "" });
-    } else {
-      setAlertDetails({ error: false, url });
-    }
-    setShowAlert(true);
+  const handleReportIssueModalToggle = () => {
+    setIsReportIssueOpen((prevIsOpen) => !prevIsOpen);
   };
 
   return (
     <>
-      {showAlert && (
-        <Alert
-          variant={alertDetails.error ? "danger" : "success"}
-          title={
-            alertDetails.error
-              ? "There was an error reporting your issue"
-              : "Error reported successfully"
-          }
-        >
-          {alertDetails.error ? (
-            <p>
-              If the problem persist, please report it on{" "}
-              <a
-                href="https://bugzilla.redhat.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Bugzilla
-              </a>
-              .
-            </p>
-          ) : (
-            <p>
-              You can see your bug report on{" "}
-              <a href={alertDetails.url} target="_blank" rel="noreferrer">
-                Bugzilla
-              </a>
-              .
-            </p>
-          )}
-          <p></p>
-        </Alert>
-      )}
+      <DetailsModal
+        isOpen={isDetailsOpen}
+        onClose={handleDetailsModalToggle}
+        architecture={architecture}
+        version={version}
+        trace={trace}
+      />
+
+      <ReportIssueModal
+        isOpen={isReportIssueOpen}
+        onClose={handleReportIssueModalToggle}
+        architecture={architecture}
+        version={version}
+        trace={trace}
+      />
 
       <Stack
         hasGutter
@@ -92,29 +62,18 @@ const InfoPage = ({ architecture, version, trace }) => {
         </StackItem>
 
         <StackItem>
-          <DetailsModal
-            isOpen={isOpen}
-            onClose={handleModalToggle}
-            architecture={architecture}
-            version={version}
-            trace={trace}
-          />
           <Button
             variant="link"
             icon={<ExternalLinkSquareAltIcon />}
             iconPosition="end"
-            onClick={handleModalToggle}
+            onClick={handleDetailsModalToggle}
           >
             View more details
           </Button>
         </StackItem>
 
         <StackItem>
-          <Button
-            variant="primary"
-            isDisabled={isReportingBug}
-            onClick={handleReportBug}
-          >
+          <Button variant="primary" onClick={handleReportIssueModalToggle}>
             Report Issue
           </Button>
         </StackItem>
