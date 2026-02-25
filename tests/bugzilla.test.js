@@ -1,4 +1,8 @@
-import { getFedoraVersion, isNumeric } from "../src/bugzilla.js";
+import {
+  getBugzillaReportBugURL,
+  getFedoraVersion,
+  isNumeric,
+} from "../src/bugzilla.js";
 
 describe("isNumeric()", () => {
   test("Single digit numbers are numerics", () => {
@@ -36,5 +40,35 @@ describe("getFedoraVersion()", () => {
 
   test("Non numeric kernel versions default to Rawhide", () => {
     expect(getFedoraVersion("6.17.8-200.fcAB.x86_64")).toBe("rawhide");
+  });
+});
+
+describe("getBugzillaReportBugURL()", () => {
+  const originalEnv = process.env.BUGZILLA_URL;
+
+  beforeEach(() => {
+    process.env.BUGZILLA_URL = "https://bugzilla.redhat.com";
+  });
+
+  afterEach(() => {
+    process.env.BUGZILLA_URL = originalEnv;
+  });
+
+  test("Constructs URL with numeric Fedora version", () => {
+    expect(getBugzillaReportBugURL("42")).toBe(
+      "https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora&version=42&component=kernel",
+    );
+  });
+
+  test("Constructs URL with rawhide version", () => {
+    expect(getBugzillaReportBugURL("rawhide")).toBe(
+      "https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora&version=rawhide&component=kernel",
+    );
+  });
+
+  test("Constructs URL with single digit Fedora version", () => {
+    expect(getBugzillaReportBugURL("2")).toBe(
+      "https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora&version=2&component=kernel",
+    );
   });
 });

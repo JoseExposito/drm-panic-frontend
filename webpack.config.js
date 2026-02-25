@@ -24,16 +24,6 @@ export default () => ({
     hot: true,
     host: "localhost",
     port: 8888,
-    // Proxy the Bugzilla local web server (http://localhost:8080/) as
-    // "/bugzilla" to avoid CORS issues:
-    proxy: [
-      {
-        context: ["/bugzilla"],
-        target: "http://0.0.0.0:8080/",
-        pathRewrite: { "^/bugzilla": "" },
-        secure: false,
-      },
-    ],
   },
   devtool: isProduction ? "source-map" : "inline-source-map",
   module: {

@@ -12,7 +12,7 @@ import {
 import { CopyIcon } from "@patternfly/react-icons/dist/esm/icons/copy-icon";
 import { ExternalLinkSquareAltIcon } from "@patternfly/react-icons/dist/esm/icons/external-link-square-alt-icon";
 import PropTypes from "prop-types";
-import { getFedoraVersion } from "../../bugzilla.js";
+import { getBugzillaReportBugURL, getFedoraVersion } from "../../bugzilla.js";
 
 const ReportIssueModal = ({
   isOpen,
@@ -22,7 +22,7 @@ const ReportIssueModal = ({
   trace,
 }) => {
   const fedoraVersion = getFedoraVersion(version);
-  const bugzillaUrl = `https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora&version=${fedoraVersion}&component=kernel`;
+  const bugzillaUrl = getBugzillaReportBugURL(fedoraVersion);
   const reportTrace = `Linux kernel version: ${version}\nArchitecture: ${architecture}\nFedora version: ${fedoraVersion}\n\n${trace}`;
 
   return (
