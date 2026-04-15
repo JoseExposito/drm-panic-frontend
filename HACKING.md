@@ -23,6 +23,17 @@ $ npm start
 
 If you are using VScode, press F5 to start debugging.
 
+## Running with Docker
+
+Build the container image and run it:
+
+```bash
+$ docker build -t drm-panic-frontend .
+$ docker run -p 8888:8080 drm-panic-frontend
+```
+
+The application will be available at http://localhost:8888.
+
 ### Example URL
 
 This URL can be used for testing:
